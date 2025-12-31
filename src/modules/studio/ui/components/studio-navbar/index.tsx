@@ -5,7 +5,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 import { AuthButton } from "@/modules/auth/ui/components/auth-button";
 
-// import { StudioUploadModal } from "../studio-upload-modal";
+import { StudioUploadModal } from "../studio-upload-modal";
 
 export const StudioNavbar = () => {
     return (
@@ -26,7 +26,7 @@ export const StudioNavbar = () => {
                 <div className="flex-1" />
 
                 <div className="flex-shrink-0 items-center flex gap-4">
-                    {/* <StudioUploadModal /> */}
+                    <StudioUploadModal />
                     <AuthButton />
                 </div>
             </div>
