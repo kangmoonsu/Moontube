@@ -94,8 +94,8 @@ export const POST = async (request: Request) => {
                 return new Response("Failed to upload thumbnail or preview", { status: 500 });
             }
 
-            const { key: thumbnailKey, url : thumbnailUrl } = uploadedThumbnail.data;
-            const { key: previewKey, url : previewUrl } = uploadedPreview.data;
+            const { key: thumbnailKey, url: thumbnailUrl } = uploadedThumbnail.data;
+            const { key: previewKey, url: previewUrl } = uploadedPreview.data;
 
             await db
                 .update(videos)
