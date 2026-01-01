@@ -367,7 +367,33 @@ export const videosRouter = createTRPCRouter({
             const playbackId = asset.playback_ids?.[0].id;
             const duration = asset.duration ? Math.round(asset.duration * 1000) : 0;
 
-            // TODO: Potentially find a way to revalidate trackId and trackStatus as well
+            let thumbnailUrl = existingVideo.thumbnailUrl;
+            let thumbnailKey = existingVideo.thumbnailKey;
+            let previewUrl = existingVideo.previewUrl;
+            let previewKey = existingVideo.previewKey;
+
+            if (asset.status === "ready" && playbackId) {
+                if (!thumbnailUrl || !previewUrl) {
+                    const tempThumbnailUrl = `https://image.mux.com/${playbackId}/thumbnail.jpg`;
+                    const tempPreviewUrl = `https://image.mux.com/${playbackId}/animated.gif`;
+
+                    const utapi = new UTApi();
+                    const [uploadedThumbnail, uploadedPreview] = await utapi.uploadFilesFromUrl([
+                        tempThumbnailUrl,
+                        tempPreviewUrl,
+                    ]);
+
+                    if (uploadedThumbnail.data) {
+                        thumbnailUrl = uploadedThumbnail.data.url;
+                        thumbnailKey = uploadedThumbnail.data.key;
+                    }
+
+                    if (uploadedPreview.data) {
+                        previewUrl = uploadedPreview.data.url;
+                        previewKey = uploadedPreview.data.key;
+                    }
+                }
+            }
 
             const [updatedVideo] = await db
                 .update(videos)
@@ -376,6 +402,10 @@ export const videosRouter = createTRPCRouter({
                     muxPlaybackId: playbackId,
                     muxAssetId: asset.id,
                     duration,
+                    thumbnailUrl,
+                    thumbnailKey,
+                    previewUrl,
+                    previewKey,
                 })
                 .where(and(
                     eq(videos.id, input.id),
