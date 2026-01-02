@@ -6,7 +6,7 @@ interface ResponsiveModalProps {
   children: React.ReactNode;
   open: boolean;
   title: string;
-  onOpenChange: (open: boolean) => void;
+  onOpenChange: (open: boolean) => void; 
 };
 
 export const ResponsiveModal = ({

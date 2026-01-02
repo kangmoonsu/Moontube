@@ -51,7 +51,7 @@ export const ourFileRouter = {
         })
         .where(eq(users.id, metadata.userId))
 
-      return { uploadedBy: metadata.userId };
+      return { uploadedBy: metadata.userId};
     }),
   thumbnailUploader: f({
     image: {

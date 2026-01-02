@@ -270,7 +270,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                           onClick={() => generateTitle.mutate({ id: videoId })}
                           disabled={generateTitle.isPending || !video.muxTrackId}
                         >
-                          {generateTitle.isPending
+                          {generateTitle.isPending 
                             ? <Loader2Icon className="animate-spin" />
                             : <SparklesIcon />
                           }
@@ -293,7 +293,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      <div className="flex items-center gap-x-2">
+                    <div className="flex items-center gap-x-2">
                         Description
                         <Button
                           size="icon"
@@ -303,7 +303,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                           onClick={() => generateDescription.mutate({ id: videoId })}
                           disabled={generateDescription.isPending || !video.muxTrackId}
                         >
-                          {generateDescription.isPending
+                          {generateDescription.isPending 
                             ? <Loader2Icon className="animate-spin" />
                             : <SparklesIcon />
                           }
@@ -358,7 +358,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                               <SparklesIcon className="size-4 mr-1" />
                               AI-generated
                             </DropdownMenuItem>
-                            <DropdownMenuItem
+                            <DropdownMenuItem 
                               onClick={() => restoreThumbnail.mutate({ id: videoId })}
                             >
                               <RotateCcwIcon className="size-4 mr-1" />
@@ -435,27 +435,27 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center">
-                    <div className="flex flex-col gap-y-1">
-                      <p className="text-muted-foreground text-xs">
-                        Video status
-                      </p>
-                      <p className="text-sm">
-                        {snakeCaseToTitle(video.muxStatus || "preparing")}
-                      </p>
-                    </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-y-1">
+                    <p className="text-muted-foreground text-xs">
+                      Video status
+                    </p>
+                    <p className="text-sm">
+                      {snakeCaseToTitle(video.muxStatus || "preparing")}
+                    </p>
                   </div>
+                </div>
 
-                  <div className="flex justify-between items-center">
-                    <div className="flex flex-col gap-y-1">
-                      <p className="text-muted-foreground text-xs">
-                        Subtitles status
-                      </p>
-                      <p className="text-sm">
-                        {snakeCaseToTitle(video.muxTrackStatus || "no_subtitles")}
-                      </p>
-                    </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-y-1">
+                    <p className="text-muted-foreground text-xs">
+                      Subtitles status
+                    </p>
+                    <p className="text-sm">
+                      {snakeCaseToTitle(video.muxTrackStatus || "no_subtitles")}
+                    </p>
                   </div>
+                </div>
 
                 </div>
               </div>
