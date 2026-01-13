@@ -132,10 +132,10 @@ export const VideoRowCard = ({
                 <div className="flex items-center gap-2 my-3">
                   <UserAvatar
                     size="sm"
-                    imageUrl={data.user.imageUrl}
-                    name={data.user.name}
+                    imageUrl={data.user?.imageUrl ?? ""}
+                    name={data.user?.name ?? "Unknown"}
                   />
-                  <UserInfo size="sm" name={data.user.name} />
+                  <UserInfo size="sm" name={data.user?.name ?? "Unknown"} />
                 </div>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -154,7 +154,7 @@ export const VideoRowCard = ({
               </>
             )}
             {size === "compact" && (
-              <UserInfo size="sm" name={data.user.name} />
+              <UserInfo size="sm" name={data.user?.name ?? "Unknown"} />
             )}
             {size === "compact" && (
               <p className="text-xs text-muted-foreground mt-1">
